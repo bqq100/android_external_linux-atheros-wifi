@@ -1,7 +1,8 @@
 
+ATH_LINUXPATH=$2
 # which type? (we have to select only one.)
 #export ATH_BUILD_TYPE=QUALCOMM_ARM
-export ATH_BUILD_TYPE=QUALCOMM_ARM_NATIVEMMC
+export ATH_BUILD_TYPE=FSL_ARM_NATIVEMMC
 #export ATH_BUILD_TYPE=LOCAL_i686_NATIVEMMC
 
 # which BSP? (we have to select only one.)
@@ -43,7 +44,7 @@ done
 
 case $1 in
 	1)
-		make V=1
+		make V=1 ATH_LINUXPATH=${ATH_LINUXPATH}
 		if [ "$ATH_BUILD_TYPE" == "QUALCOMM_ARM" ]; then
 			cp sdiostack/src/hcd/qualcomm/sdio_qualcomm_hcd.ko .output/${ATH_BUILD_TYPE}-SDIO/image/
 		fi

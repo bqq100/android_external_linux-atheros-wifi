@@ -91,7 +91,7 @@ unsigned int processDot11Hdr = 0;
 int bmienable = 1;
 int work_mode = 0;
 int chan_num = 0;
-const char *def_ifname = "ath0";
+const char *def_ifname = "wlan0";
 struct wake_lock ar6k_init_wake_lock;
 
 char *fm_path = NULL;

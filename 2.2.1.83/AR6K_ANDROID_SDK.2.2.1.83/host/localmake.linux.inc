@@ -119,4 +119,31 @@ ifeq ($(ATH_BUILD_TYPE), QUALCOMM_ARM_NATIVEMMC)
   ATH_BUS_TYPE := SDIO
 
 endif
+
+# Freescale platform case
+ifeq ($(ATH_BUILD_TYPE), FSL_ARM_NATIVEMMC)
+
+  $(info *************************)
+  $(info PLATFORM: $(ATH_BUILD_TYPE))
+  $(info BSP:      $(ATH_BSP_TYPE))
+  $(info *************************)
+
+  # Some environment settings
+  ATH_ANDROID_ENV := yes
+#  ATH_FORCE_TCMD_MODE := yes
+#  ATH_FORCE_ART_MODE := yes
+  ATH_FAKE_EEPROM_USED := yes
+  ATH_EEPROM_FILE_USED := yes
+
+  # Kernel path
+  ATH_LINUXPATH ?= /home/b20223/android-imx/kernel_imx
+
+  # Some common variable
+  export ATH_BUS_SUBTYPE=linux_sdio
+  ATH_ARCH_CPU_TYPE := arm
+  ATH_CROSS_COMPILE_TYPE := arm-none-linux-gnueabi-
+  ATH_BUS_TYPE := SDIO
+  ATH_OS_SUB_TYPE := linux_2_6
+endif
+
 #ATHENV
