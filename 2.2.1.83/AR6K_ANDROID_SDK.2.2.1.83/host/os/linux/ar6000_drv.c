@@ -56,7 +56,9 @@ APTC_TRAFFIC_RECORD aptcTR;
 #include <linux/fs.h>
 #ifdef CONFIG_PM
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,27)
+#ifdef CONFIG_HAS_WAKELOCK
 #include <linux/wakelock.h>
+#endif
 #endif
 enum {
     WLAN_PWR_CTRL_UP = 0,
@@ -92,7 +94,9 @@ int bmienable = 1;
 int work_mode = 0;
 int chan_num = 0;
 const char *def_ifname = "wlan0";
+#ifdef CONFIG_HAS_WAKELOCK
 struct wake_lock ar6k_init_wake_lock;
+#endif
 
 char *fm_path = NULL;
 char *tgt_fw = "/system/wifi/athwlan.bin.z77";
@@ -1015,7 +1019,9 @@ ar6000_init_module(void)
 
 /* ATHENV */
 #ifdef ANDROID_ENV
+#ifdef CONFIG_HAS_WAKELOCK
     wake_lock_init(&ar6k_init_wake_lock, WAKE_LOCK_SUSPEND, "ar6k_init");
+#endif
 #endif
 /* ATHENV */
 
@@ -1068,7 +1074,9 @@ ar6000_cleanup_module(void)
 
 /* ATHENV */
 #ifdef ANDROID_ENV
+#ifdef CONFIG_HAS_WAKELOCK
     wake_lock_destroy(&ar6k_init_wake_lock);
+#endif
 #endif
 /* ATHENV */
 

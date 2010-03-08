@@ -31,8 +31,10 @@
 
 /* ATHENV */
 #ifdef ANDROID_ENV
+#ifdef CONFIG_HAS_WAKELOCK
 #include <linux/wakelock.h>
 extern struct wake_lock ar6k_init_wake_lock;
+#endif
 #endif
 /* ATHENV */
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,27) && defined(CONFIG_PM)
@@ -498,7 +500,9 @@ static int startup_task(void *param)
     AR_DEBUG_PRINTF(ATH_DEBUG_TRACE, ("AR6000: call HTC from startup_task\n"));
 /* ATHENV */
 #ifdef ANDROID_ENV
+#ifdef CONFIG_HAS_WAKELOCK
     wake_lock(&ar6k_init_wake_lock);
+#endif
 #endif
 /* ATHENV */
         /* start  up inform DRV layer */
@@ -507,7 +511,9 @@ static int startup_task(void *param)
     }
 /* ATHENV */
 #ifdef ANDROID_ENV
+#ifdef CONFIG_HAS_WAKELOCK
     wake_unlock(&ar6k_init_wake_lock);
+#endif
 #endif
 /* ATHENV */
     return 0;
@@ -522,7 +528,9 @@ static int resume_task(void *param)
     AR_DEBUG_PRINTF(ATH_DEBUG_TRACE, ("AR6000: call HTC from resume_task\n"));
 /* ATHENV */
 #ifdef ANDROID_ENV
+#ifdef CONFIG_HAS_WAKELOCK
     wake_lock(&ar6k_init_wake_lock);
+#endif
 #endif
 /* ATHENV */
         /* start  up inform DRV layer */
@@ -532,7 +540,9 @@ static int resume_task(void *param)
 
 /* ATHENV */
 #ifdef ANDROID_ENV
+#ifdef CONFIG_HAS_WAKELOCK
     wake_unlock(&ar6k_init_wake_lock);
+#endif
 #endif
 /* ATHENV */
     return 0;
