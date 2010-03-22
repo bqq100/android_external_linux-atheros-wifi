@@ -1,5 +1,7 @@
 
 ATH_LINUXPATH=$2
+ROOTFS_DIR=$2
+KERNEL_VER=$3
 # which type? (we have to select only one.)
 #export ATH_BUILD_TYPE=QUALCOMM_ARM
 export ATH_BUILD_TYPE=FSL_ARM_NATIVEMMC
@@ -91,6 +93,15 @@ case $1 in
 		cp ${DRIVER_OTHER_TOOLS}/* ${DOWNLOAD_TOP}
 		tar czvf ath_top.tgz ${DOWNLOAD_TOP}
 		;;
+	4)
+	  echo "Copy files to rootfs"
+	  mkdir -p $ROOTFS_DIR/lib/modules/$KERNEL_VER/extra
+	  cp -f os/linux/ar6000.ko $ROOTFS_DIR/lib/modules/$KERNEL_VER/extra
+	  mkdir -p $ROOTFS_DIR/system
+	  mkdir -p $ROOTFS_DIR/system/wifi
+	  cp -f ../target/* $ROOTFS_DIR/system/wifi
+	  echo "Atheros Wifi driver install finished"
+	  ;;
 	*)
 		echo "Unsupported argument"
 		exit -1
