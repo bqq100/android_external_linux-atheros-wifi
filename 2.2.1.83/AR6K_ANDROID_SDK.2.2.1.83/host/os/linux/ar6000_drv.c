@@ -1926,14 +1926,6 @@ ar6000_avail_ev(void *context, void *hif_handle)
         dev->hard_header_len = ETH_HLEN + sizeof(ATH_LLC_SNAP_HDR) +
             sizeof(WMI_DATA_HDR) + HTC_HEADER_LEN;
     }
-
-    /* This runs the init function */
-    if (register_netdev(dev)) {
-        AR_DEBUG_PRINTF("ar6000_avail: register_netdev failed\n");
-                ar6000_destroy(dev, 0);
-                return A_ERROR;
-            }
-
     HIFClaimDevice(ar->arHifDevice, ar);
 
     /* We only register the device in the global list if we succeed. */
@@ -1949,6 +1941,14 @@ ar6000_avail_ev(void *context, void *hif_handle)
         ar6000_destroy(dev, 1);
         return A_ERROR;
     }
+
+    /* This runs the init function */
+    if (register_netdev(dev)) {
+        AR_DEBUG_PRINTF("ar6000_avail: register_netdev failed\n");
+                ar6000_destroy(dev, 0);
+                return A_ERROR;
+            }
+
     return A_OK;
 }
 
