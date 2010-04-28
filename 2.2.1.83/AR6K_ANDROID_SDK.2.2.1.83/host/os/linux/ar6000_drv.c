@@ -99,29 +99,29 @@ struct wake_lock ar6k_init_wake_lock;
 #endif
 
 char *fm_path = NULL;
-char *tgt_fw = "/system/wifi/athwlan.bin.z77";
-char *tgt_patch = "/system/wifi/data.patch.hw2_0.bin";
-char *tcmd_fw = "/system/wifi/athtcmd_ram.bin";
-char *art_fw = "/system/wifi/device.bin";
-char *eeprom_bin = "/system/wifi/eeprom.bin";
-char *eeprom_data = "/system/wifi/eeprom.data";
+char *tgt_fw = "/lib/firmware/ath6k/AR6102/athwlan.bin.z77";
+char *tgt_patch = "/lib/firmware/ath6k/AR6102/data.patch.hw2_0.bin";
+char *tcmd_fw = "/lib/firmware/ath6k/AR6102/athtcmd_ram.bin";
+char *art_fw = "/lib/firmware/ath6k/AR6102/device.bin";
+char *eeprom_bin = "/lib/firmware/ath6k/AR6102/eeprom.bin";
+char *eeprom_data = "/lib/firmware/ath6k/AR6102/eeprom.data";
 
 
 #ifdef REGION_CODE_FILE_USED
-char *reg_file = "/system/wifi/reg_code";
+char *reg_file = "/lib/firmware/ath6k/AR6102/reg_code";
 #else
 char *reg_file = NULL;
 #endif
 
 #ifdef SOFTMAC_USED
-char *softmac_file = "/system/wifi/softmac";
+char *softmac_file = "/lib/firmware/ath6k/AR6102/softmac";
 #else
 char *softmac_file = NULL;
 #endif
 
 #ifdef EEPROM_FILE_USED
-char *eeprom_file = "/system/wifi/calData_ar6102_15dBm.bin";
-/*char *eeprom_file = "/system/wifi/fakeBoardData_AR6002.bin"; */
+char *eeprom_file = "/lib/firmware/ath6k/AR6102/calData_ar6102_15dBm.bin";
+/*char *eeprom_file = "/lib/firmware/ath6k/AR6102/fakeBoardData_AR6002.bin"; */
 #else
 char *eeprom_file = NULL;
 #endif
@@ -1541,8 +1541,8 @@ ar6000_download_image(struct net_device *dev)
            Call athloader which will fork and run customized loadAR6000.sh to
            load firmware by script automatically after reload & resume
          */
-        char *argv[] = { "/system/wifi/athfwloader", NULL };
-        char *envp[] = { "LD_LIBRARY_PATH=/system/lib",NULL,};
+        char *argv[] = { "/lib/firmware/ath6k/AR6102/athfwloader", NULL };
+        char *envp[] = { "LD_LIBRARY_PATH=/lib",NULL,};
         ret = call_usermodehelper(argv[0], argv, envp, UMH_WAIT_EXEC);
         printk("call usermode fw_loader ret = %d err %d\n", ret, ((ret & 0xff00) >> 8));
         (void)firmware_transfer;

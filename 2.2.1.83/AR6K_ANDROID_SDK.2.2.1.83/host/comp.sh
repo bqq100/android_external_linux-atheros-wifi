@@ -97,9 +97,6 @@ case $1 in
 	  echo "Copy files to rootfs"
 	  mkdir -p $ROOTFS_DIR/lib/modules/$KERNEL_VER/extra
 	  cp -f os/linux/ar6000.ko $ROOTFS_DIR/lib/modules/$KERNEL_VER/extra
-	  mkdir -p $ROOTFS_DIR/system
-	  mkdir -p $ROOTFS_DIR/system/wifi
-	  cp -f ../target/* $ROOTFS_DIR/system/wifi
 	  echo "Atheros Wifi driver install finished"
 	  ;;
 	*)
