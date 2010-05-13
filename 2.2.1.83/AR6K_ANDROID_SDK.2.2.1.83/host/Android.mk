@@ -20,13 +20,12 @@ export  ATH_ANDROID_FW_PATH=yes
 ATH_HIF_TYPE:=sdio
 #ATH_SRC_BASE:= .
 
-mod_file := $(TARGET_OUT)/wifi/ar6000.ko
+mod_file := $(TARGET_OUT)/lib/modules/ar6000.ko
 $(mod_file) :
 	cd $(ATH_SRC) && ./comp.sh 2 ${PWD}/$(ATH_LINUXPATH)
 	cd $(ATH_SRC) && ./comp.sh 1 ${PWD}/$(ATH_LINUXPATH)
 #	$(MAKE) ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi- -C $(ATH_LINUXPATH) ATH_HIF_TYPE=$(ATH_HIF_TYPE) SUBDIRS=${PWD}/$(ATH_SRC)/os/linux modules
-	mkdir -p $(TARGET_OUT)/wifi
-	$(ACP) $(ATH_SRC)/os/linux/ar6000.ko $(TARGET_OUT)/wifi/
+	$(ACP) $(ATH_SRC)/os/linux/ar6000.ko $(TARGET_OUT)/lib/modules/
 
 ALL_PREBUILT+=$(mod_file)
 
