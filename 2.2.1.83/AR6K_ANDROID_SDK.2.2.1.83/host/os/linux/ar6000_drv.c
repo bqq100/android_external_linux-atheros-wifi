@@ -98,6 +98,36 @@ const char *def_ifname = "wlan0";
 struct wake_lock ar6k_init_wake_lock;
 #endif
 
+#ifdef ANDROID_FW_PATH
+char *fm_path = NULL;
+char *tgt_fw = "/system/lib/firmware/ath6k/AR6102/athwlan.bin.z77";
+char *tgt_patch = "/system/lib/firmware/ath6k/AR6102/data.patch.hw2_0.bin";
+char *tcmd_fw = "/system/lib/firmware/ath6k/AR6102/athtcmd_ram.bin";
+char *art_fw = "/system/lib/firmware/ath6k/AR6102/device.bin";
+char *eeprom_bin = "/system/lib/firmware/ath6k/AR6102/eeprom.bin";
+char *eeprom_data = "/system/lib/firmware/ath6k/AR6102/eeprom.data";
+
+#ifdef REGION_CODE_FILE_USED
+char *reg_file = "/system/lib/firmware/ath6k/AR6102/reg_code";
+#else
+char *reg_file = NULL;
+#endif
+
+#ifdef SOFTMAC_USED
+char *softmac_file = "/system/lib/firmware/ath6k/AR6102/softmac";
+#else
+char *softmac_file = NULL;
+#endif
+
+#ifdef EEPROM_FILE_USED
+char *eeprom_file = "/system/lib/firmware/ath6k/AR6102/calData_ar6102_15dBm.bin";
+/*char *eeprom_file = "/system/lib/firmware/ath6k/AR6102/fakeBoardData_AR6002.bin"; */
+#else
+char *eeprom_file = NULL;
+#endif
+
+#else
+
 char *fm_path = NULL;
 char *tgt_fw = "/lib/firmware/ath6k/AR6102/athwlan.bin.z77";
 char *tgt_patch = "/lib/firmware/ath6k/AR6102/data.patch.hw2_0.bin";
@@ -105,7 +135,6 @@ char *tcmd_fw = "/lib/firmware/ath6k/AR6102/athtcmd_ram.bin";
 char *art_fw = "/lib/firmware/ath6k/AR6102/device.bin";
 char *eeprom_bin = "/lib/firmware/ath6k/AR6102/eeprom.bin";
 char *eeprom_data = "/lib/firmware/ath6k/AR6102/eeprom.data";
-
 
 #ifdef REGION_CODE_FILE_USED
 char *reg_file = "/lib/firmware/ath6k/AR6102/reg_code";
@@ -125,6 +154,8 @@ char *eeprom_file = "/lib/firmware/ath6k/AR6102/calData_ar6102_15dBm.bin";
 #else
 char *eeprom_file = NULL;
 #endif
+
+#endif/* ANDROID_FW_PATH */
 
 int refClock = 26000000;
 /*int refClock =   19200000; */
@@ -1541,7 +1572,11 @@ ar6000_download_image(struct net_device *dev)
            Call athloader which will fork and run customized loadAR6000.sh to
            load firmware by script automatically after reload & resume
          */
+#ifdef ANDROID_FW_PATH
+        char *argv[] = { "/system/lib/firmware/ath6k/AR6102/athfwloader", NULL };
+#else
         char *argv[] = { "/lib/firmware/ath6k/AR6102/athfwloader", NULL };
+#endif
         char *envp[] = { "LD_LIBRARY_PATH=/lib",NULL,};
         ret = call_usermodehelper(argv[0], argv, envp, UMH_WAIT_EXEC);
         printk("call usermode fw_loader ret = %d err %d\n", ret, ((ret & 0xff00) >> 8));

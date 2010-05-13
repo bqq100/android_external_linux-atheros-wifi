@@ -13,7 +13,7 @@ ATH_LINUXPATH := kernel_imx
 #export  ATH_LINUXPATH=kernel_imx
 #export  ATH_ARCH_CPU_TYPE=arm
 #export  ATH_BUS_SUBTYPE=linux_sdio
-#export  ATH_ANDROID_ENV=yes
+export  ATH_ANDROID_FW_PATH=yes
 #export  ATH_EEPROM_FILE_USED=no
 #export  ATH_SOFTMAC_USED=no
  
