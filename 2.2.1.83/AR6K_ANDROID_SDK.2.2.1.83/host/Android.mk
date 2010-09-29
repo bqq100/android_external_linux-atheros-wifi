@@ -21,7 +21,7 @@ ATH_HIF_TYPE:=sdio
 #ATH_SRC_BASE:= .
 
 mod_file := $(TARGET_OUT)/lib/modules/ar6000.ko
-$(mod_file) :
+$(mod_file) :  $(ACP)
 	cd $(ATH_SRC) && ./comp.sh 2 ${PWD}/$(ATH_LINUXPATH)
 	cd $(ATH_SRC) && ./comp.sh 1 ${PWD}/$(ATH_LINUXPATH)
 	mkdir -p $(TARGET_OUT)/lib/modules
