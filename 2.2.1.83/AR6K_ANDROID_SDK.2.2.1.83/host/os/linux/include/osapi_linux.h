@@ -43,6 +43,7 @@
 #include <linux/timer.h>
 #include <linux/delay.h>
 #include <linux/wait.h>
+#include <linux/sched.h>
 #ifdef KERNEL_2_4
 #include <asm/arch/irq.h>
 #include <asm/irq.h>
