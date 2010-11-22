@@ -69,7 +69,7 @@ ifeq ($(ATH_BUILD_TYPE), QUALCOMM_ARM)
 
   # Some common variable
   ATH_ARCH_CPU_TYPE := arm 
-  ATH_CROSS_COMPILE_TYPE := arm-none-linux-gnueabi-
+  ATH_CROSS_COMPILE_TYPE := arm-eabi-
   ATH_BUS_TYPE := SDIO
 
   # SDIO host driver
@@ -114,7 +114,7 @@ ifeq ($(ATH_BUILD_TYPE), QUALCOMM_ARM_NATIVEMMC)
   # Some common variable
   export ATH_BUS_SUBTYPE=linux_sdio
   ATH_ARCH_CPU_TYPE := arm 
-  #ATH_CROSS_COMPILE_TYPE := arm-none-linux-gnueabi-
+  #ATH_CROSS_COMPILE_TYPE := arm-eabi-
   ATH_CROSS_COMPILE_TYPE := arm-eabi-
   ATH_BUS_TYPE := SDIO
 
@@ -141,7 +141,7 @@ ifeq ($(ATH_BUILD_TYPE), FSL_ARM_NATIVEMMC)
   # Some common variable
   export ATH_BUS_SUBTYPE=linux_sdio
   ATH_ARCH_CPU_TYPE := arm
-  ATH_CROSS_COMPILE_TYPE := arm-none-linux-gnueabi-
+  ATH_CROSS_COMPILE_TYPE := arm-eabi-
   ATH_BUS_TYPE := SDIO
   ATH_OS_SUB_TYPE := linux_2_6
 endif
