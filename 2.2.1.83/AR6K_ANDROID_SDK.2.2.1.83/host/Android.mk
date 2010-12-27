@@ -1,7 +1,7 @@
 #Android makefile to build kernel as a part of Android Build
 
 ifneq ($(TARGET_SIMULATOR),true)
-
+ifeq ($(BOARD_WLAN_CHIP), AR6002)
 LOCAL_PATH := $(call my-dir)
 ATH_SRC := $(LOCAL_PATH)
 
@@ -29,5 +29,5 @@ $(mod_file) :  $(ACP)
 	$(ACP) $(ATH_SRC)/os/linux/ar6000.ko $(TARGET_OUT)/lib/modules/
 
 ALL_PREBUILT+=$(mod_file)
-
+endif
 endif
