@@ -1689,12 +1689,12 @@ int ar6000_ioctl(struct net_device *dev, struct ifreq *rq, int cmd)
                 buffer = rq->ifr_data + sizeof(length);
                 ret = ar6000_htc_raw_read(ar, (HTC_RAW_STREAM_ID)streamID,
                                           buffer, length);
-                /**/ ATHENV V7.2 +++ */
+                /* ATHENV V7.2 +++ */
                 /* Without this, ART application can not run well on 8K Android */
                 /*printk("AR6K: length=%d, ret=%d\n", length, ret); */
                 if (ret != length)
                     printk("[HTC_RAW_READ] Read %d bytes, return %d bytes\n", length, ret);
-                /**/ ATHENV V7.2 --- */
+                /* ATHENV V7.2 --- */
                 put_user(ret, (unsigned int *)rq->ifr_data);
             } else {
                 ret = A_ERROR;
@@ -1709,12 +1709,12 @@ int ar6000_ioctl(struct net_device *dev, struct ifreq *rq, int cmd)
                 buffer = userdata + sizeof(streamID) + sizeof(length);
                 ret = ar6000_htc_raw_write(ar, (HTC_RAW_STREAM_ID)streamID,
                                            buffer, length);
-                /**/ ATHENV V7.2 +++ */
+                /* ATHENV V7.2 +++ */
                 /* Without this, ART application can not run well on 8K Android */
                 /*printk("AR6K: length=%d, ret=%d\n", length, ret); */
                 if (ret != length)
                     printk("[HTC_RAW_WRITE] Write %d bytes, return %d bytes\n", length, ret);
-                /**/ ATHENV V7.2 --- */
+                /* ATHENV V7.2 --- */
                 put_user(ret, (unsigned int *)rq->ifr_data);
             } else {
                 ret = A_ERROR;
