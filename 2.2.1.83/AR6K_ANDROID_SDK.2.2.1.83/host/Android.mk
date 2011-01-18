@@ -16,7 +16,11 @@ ATH_LINUXPATH := kernel_imx
 export  ATH_ANDROID_FW_PATH=yes
 #export  ATH_EEPROM_FILE_USED=no
 #export  ATH_SOFTMAC_USED=no
- 
+
+ATH_ANDROID_ROOT:= $(CURDIR)
+ATH_CROSS_COMPILE_TYPE:=$(ATH_ANDROID_ROOT)/prebuilt/linux-x86/toolchain/arm-eabi-4.4.0/bin/arm-eabi-
+export  ATH_CROSS_COMPILE_TYPE
+
 ATH_HIF_TYPE:=sdio
 #ATH_SRC_BASE:= .
 
