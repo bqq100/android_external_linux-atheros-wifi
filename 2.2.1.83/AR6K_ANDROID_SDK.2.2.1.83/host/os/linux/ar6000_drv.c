@@ -2092,6 +2092,7 @@ ar6000_stop_endpoint(struct net_device *dev)
                             printk("Fail to sync with disconnect cmd before shutdown\n");
                         }
                     }
+		    A_UNTIMEOUT(&ar->disconnect_timer);
                 }
             }
             ar->arWmiReady  = FALSE;
